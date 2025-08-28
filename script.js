@@ -21,25 +21,32 @@ function updateTime() {
 setInterval(updateTime, 1000);
 updateTime(); // Esegui subito per evitare un ritardo iniziale
 
-// Funzione per caricare le immagini
-function loadImages() {
-    const gallery = document.getElementById('image-gallery');
-    
-    // Elenco delle immagini. Devono trovarsi nella cartella 'images' del tuo repository.
-    const imagePaths = [
-        'images/foto1.jpg',
-        'images/foto2.png',
-        'images/foto3.gif'
-        // Aggiungi qui gli altri nomi dei tuoi file immagine
-    ];
+// Variabile per tenere traccia dell'immagine corrente
+let currentImageIndex = 0;
+let imagePaths = [];
 
-    imagePaths.forEach(path => {
-        const img = document.createElement('img');
-        img.src = path;
-        img.alt = 'Immagine della galleria';
-        gallery.appendChild(img);
-    });
+function showNextImage() {
+    const gallery = document.getElementById('image-gallery');
+    gallery.innerHTML = ''; // Rimuove l'immagine precedente
+    
+    if (imagePaths.length === 0) return; // Non fare nulla se non ci sono immagini
+
+    const img = document.createElement('img');
+    img.src = 'images/' + imagePaths[currentImageIndex];
+    img.alt = 'Immagine della galleria';
+    gallery.appendChild(img);
+
+    // Passa all'immagine successiva e torna all'inizio se raggiunge la fine
+    currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
 }
 
-// Carica le immagini quando la pagina è pronta
-document.addEventListener('DOMContentLoaded', loadImages);
+// Carica il file JSON con i nomi delle immagini
+fetch('images.json')
+    .then(response => response.json())
+    .then(data => {
+        imagePaths = data;
+        // Avvia la rotazione delle immagini solo dopo averle caricate
+        showNextImage();
+        setInterval(showNextImage, 15000);
+    })
+    .catch(error => console.error('Errore nel caricamento del file JSON:', error));
