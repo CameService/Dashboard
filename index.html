@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Ufficio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-header">
+        <div id="treviso-time" class="time-box main-time"></div>
+    </div>
+
+    <div class="dashboard-clocks">
+        <div id="moscow-time" class="time-box"></div>
+        <div id="dubai-time" class="time-box"></div>
+        <div id="morocco-time" class="time-box"></div>
+        <div id="algeria-time" class="time-box"></div>
+    </div>
+    
+    <div class="dashboard-section">
+        <h2>Timeline JIRA</h2>
+        <div class="jira-container">
+            <iframe src="https://mycame.atlassian.net/jira/core/projects/USPM/timeline?filter=type%20IN%20(%22Bug%22%2C%20%22Sub-task%22)%20AND%20updated%20%3E%3D%202025-05-01%20AND%20due%20%3C%202025-12-01%20AND%20%22Start%20date%5BDate%5D%22%20%3E%3D%202025-07-27&rangeMode=weeks" 
+                    frameborder="0" style="width:100%; height:600px;">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Immagini</h2>
+        <div id="image-gallery" class="image-gallery">
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
