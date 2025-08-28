@@ -66,20 +66,26 @@ body {
     font-size: 1.2em; /* Rimpicciolisce il font del titolo */
 }
 
+/* Stili per la sezione Trasferte (ex Timeline JIRA) */
 .jira-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 35vh; /* Nuova altezza per la timeline */
-    overflow: hidden; /* Nasconde qualsiasi contenuto in eccesso */
-    padding: 0; /* Rimuove il padding che potrebbe causare lo scroll */
+    justify-content: center; /* Centra verticalmente il contenuto */
+    align-items: center; /* Centra orizzontalmente il contenuto */
+    height: 100%; /* Forza il contenitore a occupare il 100% dell'altezza disponibile nella sua sezione */
+    width: 100%; /* Forza il contenitore a occupare il 100% della larghezza disponibile */
+    overflow: hidden; /* Nasconde qualsiasi contenuto che esca dai bordi */
+    padding: 0; /* Assicura che non ci sia padding interno che aggiunga altezza */
+    margin: 0; /* Assicura che non ci siano margini esterni che aggiungano altezza */
 }
 
 .jira-container img {
-    width: 100%;
-    height: 100%; /* L'immagine riempie il 100% dell'altezza del suo contenitore */
-    object-fit: contain; /* Ridimensiona l'immagine per adattarsi senza tagliarla */
+    max-width: 100%; /* L'immagine non supererà mai la larghezza del contenitore */
+    max-height: 100%; /* L'immagine non supererà mai l'altezza del contenitore */
+    width: auto; /* Permette alla larghezza di adattarsi */
+    height: auto; /* Permette all'altezza di adattarsi */
+    object-fit: contain; /* Adatta l'immagine mantenendo le proporzioni senza tagliarla */
+    display: block; /* Rimuove lo spazio extra sotto l'immagine */
     border-radius: 8px;
 }
 
@@ -100,3 +106,4 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     object-fit: contain;
 }
+
