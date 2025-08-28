@@ -72,20 +72,17 @@ body {
     flex-direction: column;
     justify-content: center; /* Centra verticalmente il contenuto */
     align-items: center; /* Centra orizzontalmente il contenuto */
-    height: 100%; /* Forza il contenitore a occupare il 100% dell'altezza disponibile nella sua sezione */
-    width: 100%; /* Forza il contenitore a occupare il 100% della larghezza disponibile */
-    overflow: hidden; /* Nasconde qualsiasi contenuto che esca dai bordi */
-    padding: 0; /* Assicura che non ci sia padding interno che aggiunga altezza */
-    margin: 0; /* Assicura che non ci siano margini esterni che aggiungano altezza */
+    height: 35vh; /* Assicura che l'altezza sia fissa */
+    width: 100%;
+    overflow: hidden; /* Nasconde qualsiasi contenuto in eccesso */
+    padding: 0;
+    margin: 0;
 }
 
 .jira-container img {
-    max-width: 100%; /* L'immagine non supererà mai la larghezza del contenitore */
-    max-height: 100%; /* L'immagine non supererà mai l'altezza del contenitore */
-    width: auto; /* Permette alla larghezza di adattarsi */
-    height: auto; /* Permette all'altezza di adattarsi */
-    object-fit: contain; /* Adatta l'immagine mantenendo le proporzioni senza tagliarla */
-    display: block; /* Rimuove lo spazio extra sotto l'immagine */
+    width: 100%;
+    height: 100%; /* L'immagine riempie il 100% dell'altezza del suo contenitore */
+    object-fit: fill; /* <--- QUESTO È IL CAMBIAMENTO FONDAMENTALE */
     border-radius: 8px;
 }
 
@@ -106,4 +103,5 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     object-fit: contain;
 }
+
 
