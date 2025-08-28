@@ -6,8 +6,7 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
 .dashboard-header-left,
@@ -66,22 +65,16 @@ body {
     font-size: 1.2em;
 }
 
-/* Stili per la sezione Trasferte (ex Timeline JIRA) */
+/* Stili per la sezione Trasferte */
 .jira-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 35vh; 
+    height: 35vh;
     overflow: hidden;
-    padding: 0;
-    margin: 0;
 }
 
 .jira-container img {
-    width: 100%; /* L'immagine prende il 100% della larghezza */
+    width: 100%; /* Forziamo l'immagine a occupare il 100% della larghezza */
     height: auto; /* L'altezza si adatta proporzionalmente */
-    object-fit: contain;
-    border-radius: 8px;
+    display: block;
 }
 
 /* Stili per la galleria immagini */
