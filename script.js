@@ -19,34 +19,43 @@ function updateTime() {
 
 // Aggiorna l'orologio ogni secondo
 setInterval(updateTime, 1000);
-updateTime(); // Esegui subito per evitare un ritardo iniziale
+updateTime();
 
-// Variabile per tenere traccia dell'immagine corrente
 let currentImageIndex = 0;
 let imagePaths = [];
 
 function showNextImage() {
     const gallery = document.getElementById('image-gallery');
-    gallery.innerHTML = ''; // Rimuove l'immagine precedente
+    gallery.innerHTML = '';
     
-    if (imagePaths.length === 0) return; // Non fare nulla se non ci sono immagini
+    if (imagePaths.length === 0) {
+        gallery.innerHTML = '<p style="text-align: center; color: #888;">Nessuna immagine trovata.</p>';
+        return; 
+    }
 
     const img = document.createElement('img');
     img.src = 'images/' + imagePaths[currentImageIndex];
     img.alt = 'Immagine della galleria';
     gallery.appendChild(img);
 
-    // Passa all'immagine successiva e torna all'inizio se raggiunge la fine
     currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
 }
 
-// Carica il file JSON con i nomi delle immagini
 fetch('images.json')
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status} - Controlla che il file images.json esista e sia nella cartella principale.`);
+        }
+        return response.json();
+    })
     .then(data => {
         imagePaths = data;
-        // Avvia la rotazione delle immagini solo dopo averle caricate
         showNextImage();
-        setInterval(showNextImage, 15000);
+        if (imagePaths.length > 1) {
+            setInterval(showNextImage, 15000);
+        }
     })
-    .catch(error => console.error('Errore nel caricamento del file JSON:', error));
+    .catch(error => {
+        console.error('Errore nel caricamento del file JSON o delle immagini:', error);
+        document.getElementById('image-gallery').innerHTML = `<p style="text-align: center; color: red;">${error.message}</p>`;
+    });
